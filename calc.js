@@ -1,40 +1,43 @@
-var Workout = function(){
-	var me = this;
-	this.exercises = ko.observableArray([]);
-	this.addExercise = function(){
+function Workout() {
+	var self = this;
+	self.exercises = ko.observableArray([]);
+	self.addExercise = function() {
 		var exercise = new Exercise()
-		me.exercises.push(exercise);
+		self.exercises.push(exercise);
 	};
-	this.removeExercise = function(exercise){
-		me.exercises.remove(exercise);
-	}
+	self.removeExercise = function(exercise) {
+		self.exercises.remove(exercise);
+	};
 }
 
-var Exercise = function(){
-	var me = this;
-	this.max = ko.observable(100);
-	this.barWeight = ko.observable(20.4);
-	this.sets = ko.observableArray([]);
-	this.addSet = function(){
-		me.sets.push(new Set(me, 100));
+function Exercise() {
+	var self = this;
+	self.max = ko.observable(100);
+	self.barWeight = ko.observable(20.4);
+	self.sets = ko.observableArray([]);
+	self.addSet = function() {
+		self.sets.push(new Set(self, 100));
 	};
-	this.removeSet = function(set){
-		me.sets.remove(set);
+	self.removeSet = function(set) {
+		self.sets.remove(set);
 	};
-	Enumerable.Range(1, 10).Select(function(p){ return 5*p+50;})
-		.ForEach(function(p){ me.sets.push(new Set(me, p))})
+	Enumerable.Range(1, 10).Select(function(p) {
+		return 5 * p + 50;
+	}).ForEach(function(p) {
+		self.sets.push(new Set(self, p))
+	})
 }
 
-var Set = function(exercise, percent) {
-	var me = this;
-	this.percent = ko.observable(percent);
-	this.reps = ko.observable(1);
-	this.weight = ko.computed(function() {
-		var weight = exercise.max() * me.percent() / 100;
+function Set(exercise, percent) {
+	var self = this;
+	self.percent = ko.observable(percent);
+	self.reps = ko.observable(1);
+	self.weight = ko.computed(function() {
+		var weight = exercise.max() * self.percent() / 100;
 		return Math.round(weight);
 	});
-	this.weightPerSide = ko.computed(function() {
-		var weightPerSide = (me.weight() - exercise.barWeight()) / 2.0;
+	self.weightPerSide = ko.computed(function() {
+		var weightPerSide = (self.weight() - exercise.barWeight()) / 2.0;
 		return Math.round(weightPerSide);
 	});
 }
@@ -44,7 +47,9 @@ var calc = null;
 $(function() {
 	calc = new Workout();
 	ko.applyBindings(calc);
-	Enumerable.Range(1, 3).ForEach(function(i) { calc.addExercise() })
+	Enumerable.Range(1, 3).ForEach(function(i) {
+		calc.addExercise()
+	})
 })
 
 // todo saving
