@@ -1,0 +1,54 @@
+<head>
+	<script src="lib/jquery-1.6.1.min.js"></script>
+	<script src="lib/amplify.min.js"></script>
+	<script src='lib/knockout-2.0.0.js'></script>
+	<script src="lib/knockout.mapping-latest.js"></script>
+	<script src="lib/linq.min.js"></script>
+	<script src="lib/jquery.xml2json.js"></script>
+	<script src="calc.js"></script>
+	<link rel="stylesheet" type="text/css" href="calc.css" />
+</head>
+<html>
+	<body>
+		My Oly Calculator
+		<div data-bind="foreach: exercises">
+			<label for="barWeight">Bar Weight</label>
+			<input type="number" data-bind="value: barWeight" id="barWeight" min="0"/>
+			<span class="remove" data-bind="click: $parent.removeExercise">X</span>
+			<br/>
+
+			<label for="max">1RM (kg)</label>
+			
+
+			<input type="number" class="max" data-bind="value: max" id="max" min="0"/>
+
+
+			<table class="sets" cellspacing="0" cellpadding="0">
+				<tr>
+					<!-- ko foreach: sets -->
+						<td class="percent"><input type="number" data-bind="value: percent"></input>% <span class="remove" data-bind="click: $parent.removeSet">X</span></td>
+					<!-- /ko -->
+					<td class="add" data-bind="click: addSet" rowspan="4">
+						+
+					</td>
+				</tr>
+				<tr>
+					<!-- ko foreach: sets -->
+						<td class="reps"><input type="number" data-bind="value: reps"></input>x</td>
+					<!-- /ko -->
+				</tr>
+				<tr>
+					<!-- ko foreach: sets -->
+						<td class="weightPerSide"><span data-bind="text: weightPerSide"></span></td>
+					<!-- /ko -->
+				</tr>
+				<tr>
+					<!-- ko foreach: sets -->
+						<td class="weight"><span data-bind="text: weight"></span></td>
+					<!-- /ko -->
+				</tr>
+			</table>
+		</div>
+		<div class="add" data-bind="click: addExercise">+</div>
+	</body>
+</html>

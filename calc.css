@@ -1,0 +1,72 @@
+@font-face {
+font-family: "crayon";
+src: url(lib/crayon.ttf) format("truetype");
+}
+
+body
+{
+	font-family: crayon;
+	font-size: 20px;
+}
+
+input{
+	font-family: crayon;
+	color: green;
+	font-size: 20px;
+	width: 50px;
+	border: 0px;
+}
+
+
+table.sets {
+	border: 1px solid gray;
+	border-collapse: collapse;
+}
+.sets td {
+	padding-left: 15px;
+	padding-right: 15px;
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.sets input{
+	text-align: right;
+}
+
+.percent,
+.reps{
+	color: green;
+}
+
+.weightPerSide{
+	font-family: crayon;
+	font-size: 50px;
+	width: 80px;
+	text-align: center;
+	color: blue;
+}
+
+.weight{
+	font-size: 30px;
+	text-align: right;
+	color: blue;
+}
+
+.add{
+	font-size: 40px;
+	cursor: pointer;
+	color: green;
+}
+
+.remove{
+	font-size: 20px;
+	cursor: pointer;
+	color: red;
+}
