@@ -11,6 +11,10 @@
 <html>
 	<body>
 		My Oly Calculator
+		<button data-bind="click: save">Save</button>
+		<button data-bind="click: load">Load</button>
+		<button data-bind="click: newWorkout">New</button>
+		<!-- ko with: workout -->
 		<div data-bind="foreach: exercises">
 			<label for="barWeight">Bar Weight</label>
 			<input type="number" data-bind="value: barWeight" id="barWeight" min="0"/>
@@ -18,15 +22,18 @@
 			<br/>
 
 			<label for="max">1RM (kg)</label>
-			
 
 			<input type="number" class="max" data-bind="value: max" id="max" min="0"/>
-
 
 			<table class="sets" cellspacing="0" cellpadding="0">
 				<tr>
 					<!-- ko foreach: sets -->
-						<td class="percent"><input type="number" data-bind="value: percent"></input>% <span class="remove" data-bind="click: $parent.removeSet">X</span></td>
+						<td style="text-align: right; padding-right: 1px;" ><span class="remove" data-bind="click: $parent.removeSet">X</span></td>
+					<!-- /ko -->
+				</tr>
+				<tr>
+					<!-- ko foreach: sets -->
+						<td class="percent"><input type="number" data-bind="value: percent"></input>&nbsp;% </td>
 					<!-- /ko -->
 					<td class="add" data-bind="click: addSet" rowspan="4">
 						+
@@ -34,7 +41,7 @@
 				</tr>
 				<tr>
 					<!-- ko foreach: sets -->
-						<td class="reps"><input type="number" data-bind="value: reps"></input>x</td>
+						<td class="reps"><input type="number" data-bind="value: reps"></input>&nbsp;x</td>
 					<!-- /ko -->
 				</tr>
 				<tr>
@@ -49,6 +56,7 @@
 				</tr>
 			</table>
 		</div>
+		<!-- /ko -->
 		<div class="add" data-bind="click: addExercise">+</div>
 	</body>
 </html>

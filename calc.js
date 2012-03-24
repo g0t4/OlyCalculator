@@ -1,3 +1,28 @@
+function Calculator(){
+	var self = this;
+	this.workout = ko.observable(new Workout({}));
+
+	this.save = function() {
+		var serialized = self.workout().serialize();
+		amplify.store('olycalc', serialized);
+	}
+	this.load = function() {
+		var saved = amplify.store('olycalc');
+		if(saved === undefined)
+		{
+			return;
+		}
+		this.workout(new Workout(saved));
+	}
+	this.newWorkout = function() {
+		self.workout(new Workout({}));	
+	}
+	this.addExercise = function() {
+		var exercise = new Exercise({})
+		self.workout().exercises.push(exercise);
+	};
+}
+
 function Workout(initial) {
 	var self = this;
 	initial.exercises = initial.exercises || [];
@@ -16,6 +41,11 @@ function Workout(initial) {
 	self.removeExercise = function(exercise) {
 		self.exercises.remove(exercise);
 	};
+	self.serialize = function() {
+		return {
+			exercises: Enumerable.From(self.exercises()).Select(function(e){ return e.serialize()}).ToArray()
+		};
+	}
 	if (self.exercises().length < 1) {
 		Enumerable.Range(1, 3).ForEach(function(i) {
 			self.addExercise()
@@ -52,6 +82,13 @@ function Exercise(initial) {
 			self.sets.push(new Set(self, initial))
 		})
 	}
+	self.serialize = function() {
+		return {
+			max: self.max(),
+			barWeight: self.barWeight(),
+			sets: Enumerable.From(self.sets()).Select(function(s){ return s.serialize()}).ToArray()
+		};
+	}
 }
 
 function Set(exercise, initial) {
@@ -67,26 +104,22 @@ function Set(exercise, initial) {
 		var weightPerSide = (self.weight() - exercise.barWeight()) / 2.0;
 		return Math.round(weightPerSide);
 	});
+	self.serialize = function() {
+		return {
+			percent: self.percent(),
+			reps: self.reps()
+		};
+	}
 }
 
 var calc = null;
 
 $(function() {
-	var init = {
-		exercises: [{
-			max: 120,
-			sets: [{
-				percent: 97
-			},{
-				percent: 98
-			}]
-		}]
-	}
-	calc = new Workout(init);
+	calc = new Calculator();
+	calc.newWorkout();
 	ko.applyBindings(calc);
 })
 
-// todo saving
 // drag and drop reorder?
 // todo exercise type
 // new exercise load past maxes
