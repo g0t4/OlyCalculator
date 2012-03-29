@@ -10,8 +10,7 @@ task :build_tablet do
 end
 
 task :deploy_tablet => [:build_tablet] do
-	sh'cd android & android update project -p . -s'
-	#sh'cd android & ant debug install -q'
+	sh'cd android & ant debug install -q'
 end
 
 task :run_tablet do
