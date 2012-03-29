@@ -7,10 +7,11 @@ task :build_tablet do
 	rescue
 	end
 	sh 'xcopy src android\assets\www /S /I /Y'
+	sh'cd android & ant debug -q'
 end
 
 task :deploy_tablet => [:build_tablet] do
-	sh'cd android & ant debug install -q'
+	sh'cd android & ant installd -q'
 end
 
 task :run_tablet do
