@@ -13,3 +13,7 @@ task :deploy_tablet => [:build_tablet] do
 	sh'cd android & android update project -p . -t "android-14" -s'
 	sh'cd android & ant debug install -q'
 end
+
+task :run_tablet do
+	sh'cd android & adb shell am start -a android.intent.action.MAIN -n com.OlyCalc/.OlyCalcApp'
+end
