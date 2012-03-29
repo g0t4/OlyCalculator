@@ -15,7 +15,7 @@ task :deploy_tablet => [:build_tablet] do
 end
 
 task :run_tablet do
-	sh'cd android & adb shell am start -a android.intent.action.MAIN -n com.OlyCalc/.OlyCalcApp'
+	sh'adb shell am start -a android.intent.action.MAIN -n com.OlyCalc/.OlyCalcApp'
 end
 
 task :push_tablet do
