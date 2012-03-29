@@ -7,6 +7,6 @@ public class OlyCalcApp extends DroidGap {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.loadUrl("file:///android_asset/www/calc.html");
+        super.loadUrl("file:///sdcard/olycalc/calc.html");
     }
 }
