@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="hello">Hello World, OlyCalcActivity!</string>
-    <string name="app_name">OlyCalc</string>
+    <string name="app_name">Oly Calc</string>
 
 </resources>
