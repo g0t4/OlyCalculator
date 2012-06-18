@@ -5,8 +5,7 @@ require.config({
         "knockout":"knockout-2.1.0",
         "amplify":"amplify.min",
         "knockout.mapping":"knockout.mapping-latest",
-        "linq":"linq.min",
-        "jquery.xml2json":"jquery.xml2json"
+        "linq":"linq.min"
     },
     shim:{
         'amplify':{
@@ -16,7 +15,7 @@ require.config({
     }
 });
 
-require(['knockout', 'amplify', 'knockout.mapping', 'linq', 'jquery.xml2json'], function (ko, amplify, mapper) {
+require(['knockout', 'amplify', 'knockout.mapping', 'linq'], function (ko, amplify, mapper) {
     function Calculator() {
         var self = this;
         this.workout = ko.observable(new Workout({}));
