@@ -15,7 +15,7 @@ require.config({
     }
 });
 
-require(['knockout', 'amplify', 'knockout.mapping', 'linq'], function (ko, amplify, mapper) {
+require(['knockout', 'jquery', 'amplify', 'knockout.mapping', 'linq'], function (ko, $, amplify, mapper) {
     function Calculator() {
         var self = this;
         this.workout = ko.observable(new Workout({}));
