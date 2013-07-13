@@ -1,16 +1,16 @@
 require.config({
-    baseUrl:"lib",
-    paths:{
-        "jquery":"jquery-1.7.2.min",
-        "knockout":"knockout-2.1.0",
-        "amplify":"amplify.min",
-        "knockout.mapping":"knockout.mapping-latest",
-        "linq":"linq.min"
+    baseUrl: "lib",
+    paths: {
+        "jquery": "jquery-1.7.2.min",
+        "knockout": "knockout-2.1.0",
+        "amplify": "amplify.min",
+        "knockout.mapping": "knockout.mapping-latest",
+        "linq": "linq.min"
     },
-    shim:{
-        'amplify':{
-            deps:['jquery'],
-            exports:'amplify'
+    shim: {
+        'amplify': {
+            deps: ['jquery'],
+            exports: 'amplify'
         }
     }
 });
@@ -44,8 +44,8 @@ require(['knockout', 'jquery', 'amplify', 'knockout.mapping', 'linq'], function 
         var self = this;
         initial.exercises = initial.exercises || [];
         var mapping = {
-            'exercises':{
-                create:function (options) {
+            'exercises': {
+                create: function (options) {
                     return new Exercise(options.data);
                 }
             }
@@ -60,7 +60,7 @@ require(['knockout', 'jquery', 'amplify', 'knockout.mapping', 'linq'], function 
         };
         self.serialize = function () {
             return {
-                exercises:Enumerable.From(self.exercises()).Select(function (e) {
+                exercises: Enumerable.From(self.exercises()).Select(function (e) {
                     return e.serialize()
                 }).ToArray()
             };
@@ -78,8 +78,8 @@ require(['knockout', 'jquery', 'amplify', 'knockout.mapping', 'linq'], function 
         initial.barWeight = initial.barWeight || 20.4;
         initial.sets = initial.sets || []
         var mapping = {
-            'sets':{
-                create:function (options) {
+            'sets': {
+                create: function (options) {
                     return new Set(self, options.data);
                 }
             }
@@ -96,16 +96,16 @@ require(['knockout', 'jquery', 'amplify', 'knockout.mapping', 'linq'], function 
                 return 5 * p + 50;
             }).ForEach(function (p) {
                     var initial = {
-                        percent:p
+                        percent: p
                     }
                     self.sets.push(new Set(self, initial))
                 })
         }
         self.serialize = function () {
             return {
-                max:self.max(),
-                barWeight:self.barWeight(),
-                sets:Enumerable.From(self.sets()).Select(function (s) {
+                max: self.max(),
+                barWeight: self.barWeight(),
+                sets: Enumerable.From(self.sets()).Select(function (s) {
                     return s.serialize()
                 }).ToArray()
             };
@@ -127,8 +127,8 @@ require(['knockout', 'jquery', 'amplify', 'knockout.mapping', 'linq'], function 
         });
         self.serialize = function () {
             return {
-                percent:self.percent(),
-                reps:self.reps()
+                percent: self.percent(),
+                reps: self.reps()
             };
         }
     }
