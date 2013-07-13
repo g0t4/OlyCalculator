@@ -34,10 +34,6 @@ require(['knockout', 'jquery', 'amplify', 'knockout.mapping', 'linq'], function 
         this.newWorkout = function () {
             self.workout(new Workout({}));
         }
-        this.addExercise = function () {
-            var exercise = new Exercise({})
-            self.workout().exercises.push(exercise);
-        };
     }
 
     function Workout(initial) {
